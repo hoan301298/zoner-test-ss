@@ -17,6 +17,10 @@ export class Alarm extends VersionedAggregateRoot {
   }
 
   acknowledge() {
+    // Check isAckowledged is true then throw Error
+    if (this.isAcknowledged) {
+      throw new Error('Alarm has already been acknowledged');
+    }
     this.apply(new AlarmAcknowledgedEvent(this.id));
   }
 
@@ -39,9 +43,6 @@ export class Alarm extends VersionedAggregateRoot {
   [`on${AlarmAcknowledgedEvent.name}`](
     event: SerializedEventPayload<AlarmAcknowledgedEvent>,
   ) {
-    if (this.isAcknowledged == true) {
-      throw new Error('Alarm has already been acknowledged');
-    }
     this.isAcknowledged = true;
   }
 }

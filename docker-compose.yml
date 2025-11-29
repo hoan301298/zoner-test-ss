@@ -1,4 +1,4 @@
-Nversion: "3.8"
+Nversion: "3.8" ## Should remove letter N before version
 services:
   write-db:
     image: postgres

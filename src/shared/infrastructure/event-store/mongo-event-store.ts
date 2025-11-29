@@ -29,7 +29,8 @@ export class MongoEventStore implements EventStore {
       session.startTransaction();
       await this.eventStore.insertMany(events, { session, ordered: true });
 
-      session.commitTransaction();
+      // Async function
+      await session.commitTransaction();
       this.logger.debug(`Events inserted successfully to the event store`);
     } catch (error) {
       await session.abortTransaction();
@@ -40,6 +41,9 @@ export class MongoEventStore implements EventStore {
           `Events could not be persisited. Aggregate is stale.`,
         );
         console.error(error.writeErrors?.[0]?.err?.errmsg);
+
+        // Throw error following by test case.
+        throw new Error('Events could not be persisited. Aggregate is stale.');
       } else {
         throw error;
       }
