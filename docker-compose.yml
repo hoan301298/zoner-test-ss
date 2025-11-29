@@ -1,4 +1,4 @@
-Nversion: "3.8" ## Should remove letter N before version
+version: "3.8" ## Property Nversion is not allowed.
 services:
   write-db:
     image: postgres
