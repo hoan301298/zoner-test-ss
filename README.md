@@ -31,3 +31,14 @@ make install
 ```bash
 make test
 ```
+
+## Changed files
+
+- alarms.service.spec.ts (improved tests using proper mocking)
+- alarms.controller.spec.ts (updated to use correct mocking patterns)
+- cascading-alarms.saga.ts
+- unacknowledged-alarms.saga.ts
+- alarm.ts
+- aggregate-root.ts
+- mongo-event-store.ts
+- docker-compose.yaml
